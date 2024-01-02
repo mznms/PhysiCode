@@ -23,10 +23,9 @@ export function drawKeypoints(keypoints: Keypoint[]) {
   for (let pnt of keypoints) {
     let x = pnt.x;
     let y = pnt.y;
-    // これがあるとなぜか反転する
-    // if (REVERSE) {
-    //   x = canvas.width - x;
-    // }
+    if (REVERSE) {
+      x = canvas.width - x;
+    }
     if (pnt.score && pnt.score > 0.3) context.fillRect(x, y, 10, 10);
   }
 }
