@@ -34,7 +34,7 @@ export async function main_loop(
       drawKeypoints(poses[0].keypoints);
     }
     virtualButtons.draw(poses);
-    // virtualButtons.draw_grid();
+    virtualButtons.draw_grid();
 
     requestAnimationFrame(() => loop());
   }
