@@ -5,8 +5,6 @@ import {
   getVideoElement,
 } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
-const REVERSE = true;
-
 // canvas上にkeypointsを元に点を描画する
 // canvasはvideoと重ねて表示される
 export function drawKeypoints(keypoints: Keypoint[]) {
@@ -23,9 +21,6 @@ export function drawKeypoints(keypoints: Keypoint[]) {
   for (let pnt of keypoints) {
     let x = pnt.x;
     let y = pnt.y;
-    if (REVERSE) {
-      x = canvas.width - x;
-    }
     if (pnt.score && pnt.score > 0.3) context.fillRect(x, y, 10, 10);
   }
 }

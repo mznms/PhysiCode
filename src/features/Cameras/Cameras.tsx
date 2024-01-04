@@ -12,7 +12,10 @@ export function Cameras() {
           id="video"
           className="absolute top-0 left-0 z-0 scale-x-[-1]"
         ></video>
-        <canvas id="canvas" className="absolute top-0 left-0 z-10"></canvas>
+        <canvas
+          id="canvas"
+          className="absolute top-0 left-0 z-10 scale-x-[-1]"
+        ></canvas>
       </div>
     </div>
   );
