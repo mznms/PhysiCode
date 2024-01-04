@@ -9,7 +9,7 @@ export async function initDetector() {
   console.log("detector initializing");
   const detector = await poseDetection.createDetector(
     poseDetection.SupportedModels.MoveNet,
-    detectorConfig
+    detectorConfig,
   );
   console.log("detectoor initizlized");
   return detector;
