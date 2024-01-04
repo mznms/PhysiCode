@@ -1,12 +1,12 @@
-import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
+import { PoseDetector } from "@tensorflow-models/pose-detection/dist/pose_detector";
 import { clearCanvas } from "./lib/canvas/clearCanvas";
 import { drawKeypoints } from "./lib/canvas/drawKeypoints";
-import { PoseDetector } from "@tensorflow-models/pose-detection";
 import { virtualButtons } from "./lib/canvas/virtualButtons";
+import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
 export async function main_loop(
   detector: PoseDetector,
-  video: HTMLVideoElement
+  video: HTMLVideoElement,
 ) {
   let fps = 0;
   let frameCount = 0;

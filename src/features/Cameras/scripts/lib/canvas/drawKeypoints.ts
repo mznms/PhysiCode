@@ -1,9 +1,9 @@
+import { Keypoint } from "@tensorflow-models/pose-detection/dist/types";
 import {
   getCanvasContext,
   getCanvasElement,
   getVideoElement,
 } from "@/features/Cameras/scripts/utils/getHTMLElement";
-import { Keypoint } from "@tensorflow-models/pose-detection";
 
 const REVERSE = true;
 
@@ -33,7 +33,7 @@ export function drawKeypoints(keypoints: Keypoint[]) {
 // Canvasのサイズをvideoと合わせる
 function matchCanvasSizeToVideo(
   canvas: HTMLCanvasElement,
-  video: HTMLVideoElement
+  video: HTMLVideoElement,
 ) {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
