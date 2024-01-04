@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { main_loop } from "./mainLoop";
-import { initVideoCamera } from "./initVideoCamera";
-import { initDetector } from "./initDetector";
-import { getVideoElement } from "@/utilities/getHTMLElement";
+import { main_loop } from "./scripts/mainLoop";
+import { initVideoCamera } from "./scripts/lib/initVideoCamera";
+import { initDetector } from "./scripts/lib/initDetector";
+import { getVideoElement } from "@/features/Cameras/scripts/utils/getHTMLElement";
 import "@tensorflow/tfjs-backend-webgl";
 import * as tf from "@tensorflow/tfjs-core";
 

@@ -2,7 +2,7 @@ import {
   getCanvasContext,
   getCanvasElement,
   getVideoElement,
-} from "@/utilities/getHTMLElement";
+} from "@/features/Cameras/scripts/utils/getHTMLElement";
 import { Keypoint } from "@tensorflow-models/pose-detection";
 
 const REVERSE = true;

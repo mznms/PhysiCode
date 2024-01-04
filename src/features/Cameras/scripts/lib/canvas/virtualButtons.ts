@@ -1,4 +1,7 @@
-import { getCanvasContext, getCanvasElement } from "@/utilities/getHTMLElement";
+import {
+  getCanvasContext,
+  getCanvasElement,
+} from "@/features/Cameras/scripts/utils/getHTMLElement";
 import { Keypoint, Pose } from "@tensorflow-models/pose-detection";
 
 export const virtualButtons = {

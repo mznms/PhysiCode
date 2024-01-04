@@ -1,4 +1,4 @@
-import { getVideoElement } from "@/utilities/getHTMLElement";
+import { getVideoElement } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
 export async function initVideoCamera() {
   const video = getVideoElement();

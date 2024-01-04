@@ -1,8 +1,8 @@
-import { getElementById } from "@/utilities/getHTMLElement";
-import { clearCanvas } from "./clearCanvas";
-import { drawKeypoints } from "./drawKeypoints";
+import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
+import { clearCanvas } from "./lib/canvas/clearCanvas";
+import { drawKeypoints } from "./lib/canvas/drawKeypoints";
 import { PoseDetector } from "@tensorflow-models/pose-detection";
-import { virtualButtons } from "./virtualButtons";
+import { virtualButtons } from "./lib/canvas/virtualButtons";
 
 export async function main_loop(
   detector: PoseDetector,
