@@ -74,8 +74,6 @@ export const virtualButtons = {
         }
       }
 
-      x = canvas.width - x - l1;
-
       context.fillRect(x, y, l1, l2);
     }
   },
