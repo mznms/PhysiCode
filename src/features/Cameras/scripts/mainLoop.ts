@@ -2,8 +2,9 @@ import { PoseDetector } from "@tensorflow-models/pose-detection/dist/pose_detect
 import { clearCanvas } from "./lib/canvas/clearCanvas";
 import { drawKeypoints } from "./lib/canvas/drawKeypoints";
 import {
-  buttons_update,
   initVirtualButtons,
+  buttons_update,
+  centeringPrompt,
 } from "./lib/canvas/virtualButtons";
 import { drawCameraCanvas } from "./lib/drawCameraCanvas";
 import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
@@ -44,6 +45,7 @@ export async function main_loop(
       drawKeypoints(poses[0].keypoints);
     }
     buttons_update(poses);
+    centeringPrompt(poses);
 
     requestAnimationFrame(() => loop());
   }
