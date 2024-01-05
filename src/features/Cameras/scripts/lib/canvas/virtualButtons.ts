@@ -118,14 +118,16 @@ function findKeypointByName(
 }
 
 function contains(h: number, w: number, keypoints: Keypoint[], target: String) {
+  let pnt: Keypoint = findKeypointByName(keypoints, target) as Keypoint;
+
+  if (pnt == null) return false;
+
   let x1, y1, x2, y2: number;
   let canvas = getCanvasElement();
   y1 = canvas.height * virtualButtons.height_rate_sum[h];
   x1 = canvas.width * virtualButtons.width_rate_sum[w];
   y2 = canvas.height * virtualButtons.height_rate_sum[h + 1];
   x2 = canvas.width * virtualButtons.width_rate_sum[w + 1];
-
-  let pnt: Keypoint = findKeypointByName(keypoints, target) as Keypoint;
 
   return x1 <= pnt.x && pnt.x <= x2 && y1 <= pnt.y && pnt.y <= y2;
 }
