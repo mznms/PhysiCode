@@ -24,7 +24,10 @@ export const virtualButtons = {
   ],
   valid_keypoints: ["right_wrist", "left_wrist", "right_ankle", "left_ankle"],
   // 0: 通常状態のカラー      1:押されている状態のカラー
-  colors: ["rgba(100, 100, 100, 0.8)", "rgba(255, 100, 0, 0.3)"],
+  colors: {
+    normal: "rgba(100, 100, 100, 0.8)",
+    pressed: "rgba(255, 100, 0, 0.3)",
+  },
 
   height_rate_sum: Array(),
   width_rate_sum: Array(),
@@ -97,11 +100,11 @@ export function buttons_draw(poses: Pose[]) {
       y2 = canvas.height * virtualButtons.height_rate_sum[i + 1];
       x2 = canvas.width * virtualButtons.width_rate_sum[j + 1];
 
-      context.fillStyle = virtualButtons.colors[0];
+      context.fillStyle = virtualButtons.colors.normal;
 
       for (let target of virtualButtons.valid_keypoints) {
         if (contains(i, j, keypoints, target)) {
-          context.fillStyle = virtualButtons.colors[1];
+          context.fillStyle = virtualButtons.colors.pressed;
         }
       }
 
@@ -118,7 +121,7 @@ function findKeypointByName(
 }
 
 function contains(h: number, w: number, keypoints: Keypoint[], target: String) {
-  let pnt: Keypoint = findKeypointByName(keypoints, target) as Keypoint;
+  let pnt = findKeypointByName(keypoints, target);
 
   if (pnt == null) return false;
 
