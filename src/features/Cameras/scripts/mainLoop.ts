@@ -5,6 +5,7 @@ import {
   virtualButtons,
   buttons_draw,
   buttons_draw_grid,
+  centeringPrompt,
 } from "./lib/canvas/virtualButtons";
 import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
@@ -39,6 +40,7 @@ export async function main_loop(
     }
     buttons_draw(poses);
     buttons_draw_grid();
+    centeringPrompt(poses);
 
     requestAnimationFrame(() => loop());
   }

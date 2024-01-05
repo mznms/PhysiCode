@@ -15,6 +15,7 @@ import {
 export const virtualButtons = {
   grid_height: 3,
   grid_width: 3,
+  grid_center_width: Math.floor(3 / 2),
   height_rate: [0.25, 0.5, 0.25], // 各行の幅の比
   width_rate: [0.25, 0.5, 0.25], // 各列の幅の比
   buttons_visibility: [
@@ -110,6 +111,43 @@ export function buttons_draw(poses: Pose[]) {
 
       context.fillRect(x1, y1, x2 - x1, y2 - y1);
     }
+  }
+}
+
+export function centeringPrompt(poses: Pose[]) {
+  // Canvas要素を取得
+  const canvas = getCanvasElement();
+  const context = getCanvasContext(canvas);
+
+  let keypoints: Keypoint[] = poses.length != 0 ? poses[0].keypoints : Array();
+
+  // valid_keypoints のすべてが真ん中の列にあるとき何も表示しない
+  // そうでないならばテキストと画像を表示
+  let isPersonCenter = true;
+  for (let target of virtualButtons.valid_keypoints) {
+    let isTargetCenter = false;
+    for (let i = 0; i < virtualButtons.grid_height; i++) {
+      if (contains(i, virtualButtons.grid_center_width, keypoints, target)) {
+        isTargetCenter = true;
+        break;
+      }
+    }
+    if (!isTargetCenter) {
+      isPersonCenter = false;
+      break;
+    }
+  }
+
+  if (!isPersonCenter) {
+    context.textAlign = "center";
+    context.scale(-1, 1); // キャンバスが水平反転しているので文字も反転させる
+    context.fillStyle = "red";
+    context.font = "bold 32px 'ＭＳ ゴシック'";
+    context.fillText(
+      "全身を中央に映してください",
+      -canvas.width / 2, // scale で反転させているため負の値にする
+      (canvas.height * 2) / 3,
+    );
   }
 }
 
