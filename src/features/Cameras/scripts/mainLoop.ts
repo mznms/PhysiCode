@@ -1,7 +1,11 @@
 import { PoseDetector } from "@tensorflow-models/pose-detection/dist/pose_detector";
 import { clearCanvas } from "./lib/canvas/clearCanvas";
 import { drawKeypoints } from "./lib/canvas/drawKeypoints";
-import { virtualButtons } from "./lib/canvas/virtualButtons";
+import {
+  virtualButtons,
+  buttons_draw,
+  buttons_draw_grid,
+} from "./lib/canvas/virtualButtons";
 import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
 export async function main_loop(
@@ -33,8 +37,8 @@ export async function main_loop(
     if (poses.length == 1) {
       drawKeypoints(poses[0].keypoints);
     }
-    virtualButtons.draw(poses);
-    // virtualButtons.draw_grid();
+    buttons_draw(poses);
+    buttons_draw_grid();
 
     requestAnimationFrame(() => loop());
   }
