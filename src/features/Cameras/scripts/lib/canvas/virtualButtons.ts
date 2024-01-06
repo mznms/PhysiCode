@@ -1,4 +1,5 @@
 import { Keypoint, Pose } from "@tensorflow-models/pose-detection/dist/types";
+import { Button } from "../types/types";
 import {
   getCanvasContext,
   getCanvasElement,
@@ -6,11 +7,6 @@ import {
 
 /**
  * 3x3のグリッドとしてボタンを配置する
- *
- * index :
- *    0 1 2
- *    3 4 5
- *    6 7 8
  */
 export const virtualButtons = {
   grid_height: 3,
@@ -103,7 +99,7 @@ export function buttons_draw(poses: Pose[]) {
       context.fillStyle = virtualButtons.colors.normal;
 
       for (let target of virtualButtons.valid_keypoints) {
-        if (contains(i, j, keypoints, target)) {
+        if (contains({ h: i, w: j }, keypoints, target)) {
           context.fillStyle = virtualButtons.colors.pressed;
         }
       }
@@ -120,17 +116,21 @@ function findKeypointByName(
   return keypoints.find((keypoint) => keypoint.name === targetName);
 }
 
-function contains(h: number, w: number, keypoints: Keypoint[], target: String) {
+export function contains(
+  button: Button,
+  keypoints: Keypoint[],
+  target: String,
+) {
   let pnt = findKeypointByName(keypoints, target);
 
   if (pnt == null) return false;
 
   let x1, y1, x2, y2: number;
   let canvas = getCanvasElement();
-  y1 = canvas.height * virtualButtons.height_rate_sum[h];
-  x1 = canvas.width * virtualButtons.width_rate_sum[w];
-  y2 = canvas.height * virtualButtons.height_rate_sum[h + 1];
-  x2 = canvas.width * virtualButtons.width_rate_sum[w + 1];
+  y1 = canvas.height * virtualButtons.height_rate_sum[button.h];
+  x1 = canvas.width * virtualButtons.width_rate_sum[button.w];
+  y2 = canvas.height * virtualButtons.height_rate_sum[button.h];
+  x2 = canvas.width * virtualButtons.width_rate_sum[button.w + 1];
 
   return x1 <= pnt.x && pnt.x <= x2 && y1 <= pnt.y && pnt.y <= y2;
 }
