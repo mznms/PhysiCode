@@ -3,8 +3,8 @@ import { clearCanvas } from "./lib/canvas/clearCanvas";
 import { drawKeypoints } from "./lib/canvas/drawKeypoints";
 import {
   virtualButtons,
-  buttons_draw,
-  buttons_draw_grid,
+  buttons_update,
+  initVirtualButtons,
 } from "./lib/canvas/virtualButtons";
 import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
@@ -18,6 +18,8 @@ export async function main_loop(
   let endTime: number;
 
   startTime = new Date().getTime();
+
+  initVirtualButtons();
 
   async function loop() {
     frameCount += 1;
@@ -37,8 +39,7 @@ export async function main_loop(
     if (poses.length == 1) {
       drawKeypoints(poses[0].keypoints);
     }
-    buttons_draw(poses);
-    buttons_draw_grid();
+    buttons_update(poses);
 
     requestAnimationFrame(() => loop());
   }

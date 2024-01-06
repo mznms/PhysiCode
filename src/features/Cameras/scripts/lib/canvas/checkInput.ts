@@ -1,3 +1,4 @@
+import { get } from "http";
 import { Keypoint } from "@tensorflow-models/pose-detection/dist/types";
 import { Button, Base, Trigger } from "../types/types";
 import { virtualButtons, contains } from "./virtualButtons";
@@ -28,15 +29,15 @@ function putChar(c: String) {
   console.log(c);
 }
 
-function makeFuncCheckInput(base: Base, trigger: Trigger, character: String) {
+function makeCheckInput(base: Base, trigger: Trigger, character: String) {
   let currentState = false;
 
   function checkInput(keypoints: Keypoint[]) {
     let previousState = currentState;
     currentState = false;
     // ベースを満たしているか判定
-    if (!contains(base.left_ankle, keypoints, "left_ankle")) return;
-    if (!contains(base.right_ankle, keypoints, "right_ankle")) return;
+    // if (!contains(base.left_ankle, keypoints, "left_ankle")) return;
+    // if (!contains(base.right_ankle, keypoints, "right_ankle")) return;
 
     // トリガーを満たしているか判定
     let satisfyTrigger = false;
@@ -63,4 +64,31 @@ function makeFuncCheckInput(base: Base, trigger: Trigger, character: String) {
   }
 
   return checkInput;
+}
+
+export function makeFuncGetInputs() {
+  let buttons = {
+    0: { h: 0, w: 2 },
+    1: { h: 0, w: 1 },
+    2: { h: 0, w: 0 },
+    3: { h: 1, w: 2 },
+    5: { h: 1, w: 0 },
+    6: { h: 2, w: 2 },
+    7: { h: 2, 2: 1 },
+    8: { h: 2, w: 0 },
+  };
+  let funcs = [
+    makeCheckInput(
+      { left_ankle: buttons[6], right_ankle: buttons[8] },
+      { left_wrist: buttons[5], right_wrist: buttons[5], needBothHands: false },
+      "+",
+    ),
+  ];
+  function getInputs(keypoints: Keypoint[]) {
+    for (const checkInput of funcs) {
+      checkInput(keypoints);
+    }
+  }
+
+  return getInputs;
 }
