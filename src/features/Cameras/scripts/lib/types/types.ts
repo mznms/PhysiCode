@@ -9,5 +9,5 @@ export type Base = {
 export type Trigger = {
   right_wrist: Button;
   left_wrist: Button;
-  needBothHands: true;
+  needBothHands: boolean;
 };

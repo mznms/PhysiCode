@@ -1,5 +1,6 @@
 import { Keypoint, Pose } from "@tensorflow-models/pose-detection/dist/types";
 import { Button } from "../types/types";
+import { makeFuncGetInputs } from "./checkInput";
 import {
   getCanvasContext,
   getCanvasElement,
@@ -28,13 +29,10 @@ export const virtualButtons = {
 
   height_rate_sum: Array(),
   width_rate_sum: Array(),
+  getInputs: makeFuncGetInputs(),
 };
 
-export function buttons_draw_grid() {
-  // Canvas要素を取得
-  const canvas = getCanvasElement();
-  const context = getCanvasContext(canvas);
-
+export function initVirtualButtons() {
   virtualButtons.height_rate_sum = [0];
   virtualButtons.width_rate_sum = [0];
   let cnt = 0;
@@ -47,6 +45,17 @@ export function buttons_draw_grid() {
     cnt += virtualButtons.height_rate[i];
     virtualButtons.height_rate_sum.push(cnt);
   }
+}
+
+export function buttons_update(poses: Pose[]) {
+  buttons_draw_grid();
+  buttons_draw(poses);
+  if (poses.length != 0) virtualButtons.getInputs(poses[0].keypoints);
+}
+function buttons_draw_grid() {
+  // Canvas要素を取得
+  const canvas = getCanvasElement();
+  const context = getCanvasContext(canvas);
 
   for (let i = 0; i < virtualButtons.grid_width; i++) {
     let x = canvas.width * virtualButtons.width_rate_sum[i];
@@ -68,23 +77,12 @@ export function buttons_draw_grid() {
   }
 }
 
-export function buttons_draw(poses: Pose[]) {
+function buttons_draw(poses: Pose[]) {
   // Canvas要素を取得
   const canvas = getCanvasElement();
   const context = getCanvasContext(canvas);
 
   let keypoints: Keypoint[] = poses.length != 0 ? poses[0].keypoints : Array();
-
-  let cnt = 0;
-  for (let i = 0; i < virtualButtons.grid_height; i++) {
-    cnt += virtualButtons.height_rate[i];
-    virtualButtons.height_rate_sum.push(cnt);
-  }
-  cnt = 0;
-  for (let i = 0; i < virtualButtons.grid_width; i++) {
-    cnt += virtualButtons.width_rate[i];
-    virtualButtons.width_rate_sum.push(cnt);
-  }
 
   // 仮想ボタンの描画
   for (let i = 0; i < virtualButtons.grid_height; i++) {
@@ -167,7 +165,7 @@ export function contains(
   let canvas = getCanvasElement();
   y1 = canvas.height * virtualButtons.height_rate_sum[button.h];
   x1 = canvas.width * virtualButtons.width_rate_sum[button.w];
-  y2 = canvas.height * virtualButtons.height_rate_sum[button.h];
+  y2 = canvas.height * virtualButtons.height_rate_sum[button.h + 1];
   x2 = canvas.width * virtualButtons.width_rate_sum[button.w + 1];
 
   return x1 <= pnt.x && pnt.x <= x2 && y1 <= pnt.y && pnt.y <= y2;
