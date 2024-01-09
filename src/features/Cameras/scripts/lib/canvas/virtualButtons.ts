@@ -157,6 +157,8 @@ export function contains(
   keypoints: Keypoint[],
   target: String,
 ) {
+  if (button.h < 0 || button.w < 0) return false;
+
   let pnt = findKeypointByName(keypoints, target);
 
   if (pnt == null) return false;
