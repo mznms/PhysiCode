@@ -1,7 +1,6 @@
-import { get } from "http";
 import { Keypoint } from "@tensorflow-models/pose-detection/dist/types";
-import { Button, Base, Trigger } from "../types/types";
-import { virtualButtons, contains } from "./virtualButtons";
+import { Base, Trigger } from "../types/types";
+import { contains } from "./virtualButtons";
 
 /**
  * まず機能として、　ベース　トリガー　の２つを受け取る必要がある
