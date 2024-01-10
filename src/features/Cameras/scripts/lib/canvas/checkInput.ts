@@ -18,11 +18,11 @@ import { virtualButtons, contains } from "./virtualButtons";
  *
  */
 
-function putChar(c: String) {
+function putChar(c: string) {
   console.log(c);
 }
 
-function makeCheckInput(base: Base, trigger: Trigger, character: String) {
+function makeCheckInput(base: Base, trigger: Trigger, character: string) {
   let currentState = false;
 
   function checkInput(keypoints: Keypoint[]) {

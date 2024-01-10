@@ -147,7 +147,7 @@ export function centeringPrompt(poses: Pose[]) {
 
 function findKeypointByName(
   keypoints: Keypoint[],
-  targetName: String,
+  targetName: string,
 ): Keypoint | undefined {
   return keypoints.find((keypoint) => keypoint.name === targetName);
 }
@@ -155,7 +155,7 @@ function findKeypointByName(
 export function contains(
   button: Button,
   keypoints: Keypoint[],
-  target: String,
+  target: string,
 ) {
   if (button.h < 0 || button.w < 0) return false;
 
