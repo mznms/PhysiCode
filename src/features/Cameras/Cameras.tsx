@@ -20,7 +20,7 @@ export function Cameras() {
           className="absolute top-0 left-0 z-50 scale-x-[-1] w-screen h-[80vh] object-cover"
         ></canvas>
         <textarea className="absolute bottom-0 left-0 z-50 w-screen h-[20vh] bg-default-100 text-xl" />
-        <div id="fps" className="absolute bottom-0 right-1 z-50">
+        <div id="fps" className="absolute top-0 left-1 z-50">
           FPS : 0
         </div>
         <button
