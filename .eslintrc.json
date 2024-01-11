@@ -8,6 +8,7 @@
           "order": "asc"
         }
       }
-    ]
+    ],
+    "no-unused-vars": "error"
   }
 }
