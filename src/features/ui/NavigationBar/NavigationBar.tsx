@@ -11,8 +11,6 @@ import {
 import React from "react";
 
 export function NavigatioBar() {
-  const menuItems = ["ホーム", "フリーモード", "チャレンジモード"];
-
   return (
     <Navbar>
       <NavbarContent className="sm:hidden" justify="start">
@@ -30,17 +28,17 @@ export function NavigatioBar() {
           <p className="font-bold">PhisiCode</p>
         </NavbarBrand>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/">
             ホーム
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/free-play">
             フリーモード
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/challenge-play">
             チャレンジモード
           </Link>
         </NavbarItem>
@@ -48,13 +46,31 @@ export function NavigatioBar() {
 
       <NavbarContent justify="end" />
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" color="foreground" href="#" size="lg">
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <NavbarMenuItem>
+          <Link className="w-full" color="foreground" href="/" size="lg">
+            ホーム
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            className="w-full"
+            color="foreground"
+            href="/free-play"
+            size="lg"
+          >
+            フリーモード
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            className="w-full"
+            color="foreground"
+            href="/challenge-play"
+            size="lg"
+          >
+            チャレンジモード
+          </Link>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
