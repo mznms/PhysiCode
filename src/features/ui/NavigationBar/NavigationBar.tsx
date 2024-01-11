@@ -20,6 +20,7 @@ export function NavigatioBar() {
         <NavLinks />
       </NavbarContent>
 
+      {/* スマホ用の UI でアイコンが中央に揃うために使用 */}
       <NavbarContent justify="end" />
 
       <Menu />
