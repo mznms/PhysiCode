@@ -9,6 +9,7 @@ import {
   NavbarMenu,
 } from "@nextui-org/navbar";
 import React from "react";
+import { RunningManIcon } from "../Icon/RunningManIcon";
 
 export function NavigatioBar() {
   return (
@@ -19,12 +20,14 @@ export function NavigatioBar() {
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
+          <RunningManIcon size={40} />
           <p className="font-bold">PhisiCode</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
+          <RunningManIcon size={40} />
           <p className="font-bold">PhisiCode</p>
         </NavbarBrand>
         <NavbarItem>
