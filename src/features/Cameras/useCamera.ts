@@ -3,7 +3,10 @@ import { useEffect } from "react";
 import { initDetector } from "./scripts/lib/initDetector";
 import { initVideoCamera } from "./scripts/lib/initVideoCamera";
 import { main_loop } from "./scripts/mainLoop";
-import { getVideoElement } from "@/features/Cameras/scripts/utils/getHTMLElement";
+import {
+  getElementById,
+  getVideoElement,
+} from "@/features/Cameras/scripts/utils/getHTMLElement";
 import "@tensorflow/tfjs-backend-webgl";
 
 export function useCamera() {
@@ -19,4 +22,10 @@ export function useCamera() {
 
     main();
   }, []);
+
+  function stopCamera() {
+    const videoContainerElement = getElementById("container");
+    videoContainerElement.style.display = "none";
+  }
+  return { stopCamera };
 }
