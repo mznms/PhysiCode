@@ -1,35 +1,25 @@
 "use client";
-import { Button } from "@nextui-org/button";
 import { useCamera } from "./useCamera";
 
 export function Cameras() {
-  const { startCamera, stopCamera } = useCamera();
+  const { stopCamera } = useCamera();
 
   return (
-    <div>
-      <Button color="primary" onClick={startCamera}>
-        カメラ起動
-      </Button>
-      <div id="container" className="hidden">
-        <video
-          id="video"
-          className="absolute top-0 left-0 z-50 scale-x-[-1] w-screen h-[80vh] object-cover"
-        ></video>
-        <canvas
-          id="canvas"
-          className="absolute top-0 left-0 z-50 scale-x-[-1] w-screen h-[80vh] object-cover"
-        ></canvas>
-        <textarea className="absolute bottom-0 left-0 z-50 w-screen h-[20vh] bg-default-100 text-xl" />
-        <div id="fps" className="absolute top-0 left-1 z-50">
-          FPS : 0
-        </div>
-        <button
-          className="absolute top-4 right-4 z-50 text-4xl"
-          onClick={stopCamera}
-        >
-          x
-        </button>
+    <div id="container" className="absolute top-0 left-0 z-50 sm:relative">
+      <video
+        id="video"
+        className="scale-x-[-1] w-screen h-[80vh] object-cover sm:object-fill sm:w-auto sm:h-auto"
+      />
+      <canvas
+        id="canvas"
+        className="absolute top-0 left-0 scale-x-[-1] w-screen h-[80vh] object-cover sm:object-fill sm:w-auto sm:h-auto"
+      />
+      <div id="fps" className="absolute top-0 left-1">
+        FPS : 0
       </div>
+      <button onClick={stopCamera} className="absolute top-4 right-4 text-4xl">
+        x
+      </button>
     </div>
   );
 }

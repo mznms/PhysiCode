@@ -23,14 +23,9 @@ export function useCamera() {
     main();
   }, []);
 
-  function startCamera() {
-    const videoContainerElement = getElementById("container");
-    videoContainerElement.style.display = "block";
-  }
-
   function stopCamera() {
     const videoContainerElement = getElementById("container");
     videoContainerElement.style.display = "none";
   }
-  return { startCamera, stopCamera };
+  return { stopCamera };
 }
