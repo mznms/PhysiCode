@@ -22,14 +22,14 @@ function putChar(c: string) {
 }
 
 function makeCheckInput(base: Base, trigger: Trigger, character: string) {
-  let currentState = false;
+  let triggerFulfilledCurrently = false;
 
   function checkInput(keypoints: Keypoint[]) {
     // ベースを満たしているか判定
     if (!contains(base.left_ankle, keypoints, "left_ankle")) return;
     if (!contains(base.right_ankle, keypoints, "right_ankle")) return;
-    let previousState = currentState;
-    currentState = false;
+    let triggerFulfilledPreviously = triggerFulfilledCurrently;
+    triggerFulfilledCurrently = false;
 
     // トリガーを満たしているか判定
     let satisfyTrigger = false;
@@ -49,8 +49,8 @@ function makeCheckInput(base: Base, trigger: Trigger, character: string) {
 
     if (!satisfyTrigger) return;
 
-    currentState = true;
-    if (!previousState) {
+    triggerFulfilledCurrently = true;
+    if (!triggerFulfilledPreviously) {
       putChar(character);
     }
   }
