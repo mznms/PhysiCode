@@ -5,11 +5,12 @@ import {
   initVirtualButtons,
   buttons_update,
 } from "./lib/canvas/virtualButtons";
+import { drawCameraCanvas } from "./lib/drawCameraCanvas";
 import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
 export async function main_loop(
   detector: PoseDetector,
-  video: HTMLVideoElement,
+  cameraCanvas: HTMLCanvasElement,
 ) {
   let fps = 0;
   let frameCount = 0;
@@ -26,6 +27,7 @@ export async function main_loop(
 
     clearCanvas();
 
+    // FPSの計算
     if (endTime - startTime >= 1000) {
       startTime = endTime;
       fps = frameCount;
@@ -34,7 +36,10 @@ export async function main_loop(
       fpsElement.innerText = "FPS : " + fps;
     }
 
-    const poses = await detector.estimatePoses(video);
+    // videoからcamera-canvasへの転写
+    drawCameraCanvas();
+
+    const poses = await detector.estimatePoses(cameraCanvas);
     if (poses.length == 1) {
       drawKeypoints(poses[0].keypoints);
     }

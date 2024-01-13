@@ -1,8 +1,8 @@
 import { Keypoint } from "@tensorflow-models/pose-detection/dist/types";
 import {
+  getCameraCanvasElement,
   getCanvasContext,
   getCanvasElement,
-  getVideoElement,
 } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
 // canvas上にkeypointsを元に点を描画する
@@ -10,9 +10,9 @@ import {
 export function drawKeypoints(keypoints: Keypoint[]) {
   // Canvas要素を取得
   const canvas = getCanvasElement();
-  const video = getVideoElement();
+  const cameraCanvas = getCameraCanvasElement();
 
-  matchCanvasSizeToVideo(canvas, video);
+  matchCanvasSizeToCameraCanvas(canvas, cameraCanvas);
 
   const context = getCanvasContext(canvas);
 
@@ -26,10 +26,10 @@ export function drawKeypoints(keypoints: Keypoint[]) {
 }
 
 // Canvasのサイズをvideoと合わせる
-function matchCanvasSizeToVideo(
+function matchCanvasSizeToCameraCanvas(
   canvas: HTMLCanvasElement,
-  video: HTMLVideoElement,
+  cameraCanvas: HTMLCanvasElement,
 ) {
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+  canvas.width = cameraCanvas.width;
+  canvas.height = cameraCanvas.height;
 }

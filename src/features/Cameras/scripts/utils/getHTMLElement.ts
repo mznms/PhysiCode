@@ -12,6 +12,14 @@ export function getVideoElement() {
   return video;
 }
 
+export function getCameraCanvasElement() {
+  const camera = document.getElementById("camera-canvas");
+  if (!isCanvasElement(camera)) {
+    throw new Error("Canvas element not found or is not a canvas element");
+  }
+  return camera;
+}
+
 export function getCanvasElement() {
   const canvas = document.getElementById("canvas");
 
