@@ -2,6 +2,20 @@ export class UnclosedBracketError extends Error {}
 export class TimeOutError extends Error {}
 export class MemoryBoundError extends Error {}
 
+/**
+ * Brainfuck の処理系本体
+ * bf 20041219 を参考に実装
+ * - メモリの各セルは 0-255 の値をとる．0 に対するデクリメントは 255，255 に対するインクリメントは 0 となる．
+ * - 入力読み込み時，EOF の場合は 255 をとる．
+ * - `[` から `]` へジャンプ時，対応するものが見つからなければ `UnclosedBracketError` をスロー
+ * - `]` から `[` へジャンプ時，対応するものが見つからなければ コード先頭へ代わりにジャンプ
+ * - メモリは 9999 bytes (0-9998)
+ * - メモリの領域外アクセスは `MemoryBoundError` をスロー
+ * - 実行時間が 2 秒を超えた場合は `TimeOutError` をスロー
+ * @param code BF のコード
+ * @param input 入力文字列
+ * @returns 出力文字列
+ */
 export function interpret(code: string, input: string): string {
   let mem: number[] = new Array(9999).fill(0);
   let pointer = 0;
