@@ -7,7 +7,6 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 import { PhotoCameraIcon } from "../Icon/PhotoCamera";
-import { PlusIcon } from "../Icon/PlusIcon";
 import { RunningManIcon } from "../Icon/RunningManIcon";
 
 export function NavigatioBar() {
