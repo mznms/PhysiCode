@@ -2,8 +2,8 @@ import { PoseDetector } from "@tensorflow-models/pose-detection/dist/pose_detect
 import { clearCanvas } from "./lib/canvas/clearCanvas";
 import { drawKeypoints } from "./lib/canvas/drawKeypoints";
 import {
-  buttons_update,
   initVirtualButtons,
+  buttons_update,
 } from "./lib/canvas/virtualButtons";
 import { getElementById } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
