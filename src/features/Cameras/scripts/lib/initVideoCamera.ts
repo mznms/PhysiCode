@@ -4,8 +4,8 @@ export async function initVideoCamera() {
   const video = getVideoElement();
 
   const stream = await navigator.mediaDevices.getUserMedia({
-    video: true,
     audio: false,
+    video: true,
   });
 
   video.srcObject = stream;
