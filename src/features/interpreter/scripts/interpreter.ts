@@ -121,7 +121,7 @@ export function interpret(code: string, input: string): string {
 /**
  * メモリの内容を受け取り，内容が 0-255 の範囲に収まるようにする．
  * もし 0 より小さければ，255 とする．
- * もし 256 より大きければ，0とする．
+ * もし 256 より大きければ，0 とする．
  * @param content メモリの内容
  * @returns 補正されたメモリの内容
  */
