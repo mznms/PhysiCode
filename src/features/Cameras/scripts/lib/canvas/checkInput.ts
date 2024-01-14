@@ -26,8 +26,8 @@ function makeCheckInput(base: Base, trigger: Trigger, character: string) {
 
   function checkInput(keypoints: Keypoint[]) {
     // ベースを満たしているか判定
-    if (!contains(base.left_ankle, keypoints, "left_ankle")) return;
-    if (!contains(base.right_ankle, keypoints, "right_ankle")) return;
+    if (!contains(base.left_ankle, keypoints, "left_ankle")) return null;
+    if (!contains(base.right_ankle, keypoints, "right_ankle")) return null;
     let triggerFulfilledPreviously = triggerFulfilledCurrently;
     triggerFulfilledCurrently = false;
 
@@ -47,12 +47,13 @@ function makeCheckInput(base: Base, trigger: Trigger, character: string) {
         satisfyTrigger = true;
     }
 
-    if (!satisfyTrigger) return;
+    if (!satisfyTrigger) return null;
 
     triggerFulfilledCurrently = true;
     if (!triggerFulfilledPreviously) {
-      putChar(character);
+      return character;
     }
+    return null;
   }
 
   return checkInput;
@@ -138,8 +139,12 @@ export function makeFuncGetInputs() {
   ];
   function getInputs(keypoints: Keypoint[]) {
     for (const checkInput of funcs) {
-      checkInput(keypoints);
+      const character = checkInput(keypoints);
+      if (character) {
+        return character;
+      }
     }
+    return null;
   }
 
   return getInputs;

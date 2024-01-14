@@ -1,7 +1,12 @@
 import { getVideoElement } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
-export async function initVideoCamera() {
-  const video = getVideoElement();
+let video: HTMLVideoElement | null = null;
+
+export async function getCameraElement() {
+  if (video !== null) {
+    return video;
+  }
+  video = getVideoElement();
 
   const stream = await navigator.mediaDevices.getUserMedia({
     video: true,
@@ -14,8 +19,14 @@ export async function initVideoCamera() {
   DOMException: The fetching process for the media resource was aborted by the user agent at the user's request.
   */
   video.onloadedmetadata = () => {
-    video.play().catch((e) => {
-      console.error("Error playing video: ", e);
-    });
+    if (video) {
+      video.play().catch((e) => {
+        console.error("Error playing video: ", e);
+      });
+    } else {
+      throw new Error("video is null");
+    }
   };
+
+  return video;
 }
