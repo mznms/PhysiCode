@@ -9,7 +9,7 @@ export function BodyProgrammingEditor() {
   return (
     <>
       {isOpen && (
-        <div className="lg:flex gap-2 items-stretch mx-4">
+        <div className="lg:flex gap-2 items-stretch lg:mx-4">
           <Cameras />
           <Result />
         </div>
