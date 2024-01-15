@@ -126,6 +126,7 @@ export function contains(
   let pnt = findKeypointByName(keypoints, target);
 
   if (pnt == null) return false;
+  if (pnt.score && pnt.score < 0.3) return false;
 
   let x1, y1, x2, y2: number;
   let canvas = getCanvasElement();
