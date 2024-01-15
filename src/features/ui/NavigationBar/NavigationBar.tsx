@@ -6,7 +6,6 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import { PhotoCameraIcon } from "../Icon/PhotoCamera";
 import { RunningManIcon } from "../Icon/RunningManIcon";
 import { PhotoCameraButton } from "./PhotoCameraButton";
 
@@ -26,7 +25,6 @@ export function NavigatioBar() {
         <NavbarItem className="sm:hidden">
           <NavbarMenuToggle />
         </NavbarItem>
-        {/* TODO: このアイコンを押してカメラを起動するようにする */}
         <NavbarItem>
           <PhotoCameraButton />
         </NavbarItem>
