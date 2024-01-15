@@ -58,7 +58,6 @@ function makeCheckInput(base: Base, trigger: Trigger, character: string) {
 
     triggerFulfilledCurrently = true;
     if (!triggerFulfilledPreviously) {
-      console.log(character + "をsave");
       saveChar(character);
     }
     return null;
