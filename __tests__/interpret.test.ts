@@ -1,4 +1,3 @@
-import { execPath } from "process";
 import {
   MemoryBoundError,
   UnclosedBracketError,
