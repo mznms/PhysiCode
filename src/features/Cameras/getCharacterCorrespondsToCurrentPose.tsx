@@ -19,10 +19,10 @@ export async function getCharacterCorrespondsToCurrentPose() {
   const cameraElement = await getCameraElement();
   const detector = await getDetector();
 
-  // drawCameraCanvas();
-  // const cameraCanvas = getCameraCanvasElement();
+  drawCameraCanvas();
+  const cameraCanvas = getCameraCanvasElement();
 
-  const poses = await detector.estimatePoses(cameraElement);
+  const poses = await detector.estimatePoses(cameraCanvas);
   if (poses.length == 1) {
     drawKeypoints(poses[0].keypoints);
   }

@@ -8,7 +8,7 @@ export function drawCameraCanvas() {
   const cameraCanvas = getCameraCanvasElement();
 
   // キャンバスサイズを正方形にする
-  const length = Math.min(video.clientWidth, video.clientHeight);
+  const length = Math.min(video.videoWidth, video.videoHeight);
   cameraCanvas.width = length;
   cameraCanvas.height = length;
 
@@ -16,13 +16,13 @@ export function drawCameraCanvas() {
   let sx, sy;
 
   // 縦長のカメラ
-  if (video.clientWidth < video.clientHeight) {
+  if (video.videoWidth < video.videoHeight) {
     sx = 0;
-    sy = (video.clientHeight - length) / 2;
+    sy = (video.videoHeight - length) / 2;
   }
   // 横長のカメラ
   else {
-    sx = (video.clientWidth - length) / 2;
+    sx = (video.videoWidth - length) / 2;
     sy = 0;
   }
 
