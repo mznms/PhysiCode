@@ -29,7 +29,11 @@ export async function animate(
     await getCharacterCorrespondsToCurrentPose();
 
   if (characterCorrespondsToCurrentPose) {
-    setCode(code + characterCorrespondsToCurrentPose);
+    if (characterCorrespondsToCurrentPose === "backspace") {
+      setCode(code.slice(0, -1));
+    } else {
+      setCode(code + characterCorrespondsToCurrentPose);
+    }
   }
 
   frameId.current = requestAnimationFrame((currentTime) =>

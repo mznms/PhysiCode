@@ -108,19 +108,19 @@ export function makeFuncGetInputs() {
       "<",
     ),
     makeCheckInput(
-      { left_ankle: buttons[8], right_ankle: buttons[7] },
+      { left_ankle: buttons[3], right_ankle: buttons[7] },
       {
-        left_wrist: buttons[0],
-        right_wrist: buttons["null"],
+        left_wrist: buttons["null"],
+        right_wrist: buttons[5],
         needBothHands: false,
       },
       ".",
     ),
     makeCheckInput(
-      { left_ankle: buttons[7], right_ankle: buttons[6] },
+      { left_ankle: buttons[7], right_ankle: buttons[5] },
       {
-        left_wrist: buttons["null"],
-        right_wrist: buttons[2],
+        left_wrist: buttons[3],
+        right_wrist: buttons["null"],
         needBothHands: false,
       },
       ",",
@@ -142,6 +142,15 @@ export function makeFuncGetInputs() {
         needBothHands: false,
       },
       "]",
+    ),
+    makeCheckInput(
+      { left_ankle: buttons[7], right_ankle: buttons[7] },
+      {
+        left_wrist: buttons[0],
+        right_wrist: buttons[2],
+        needBothHands: true,
+      },
+      "backspace",
     ),
   ];
   function getInputs(keypoints: Keypoint[]) {
