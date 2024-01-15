@@ -25,6 +25,9 @@ export function useCamera() {
     frameId.current = requestAnimationFrame((currentTime) =>
       animate(currentTime, code, setCode, frameId),
     );
+    return () => {
+      cancelAnimationFrame(frameId.current);
+    };
   }, [code, setCode]);
 
   return { videoRef };
