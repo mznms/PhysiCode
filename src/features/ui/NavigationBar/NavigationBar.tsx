@@ -8,6 +8,7 @@ import {
 } from "@nextui-org/react";
 import { PhotoCameraIcon } from "../Icon/PhotoCamera";
 import { RunningManIcon } from "../Icon/RunningManIcon";
+import { PhotoCameraButton } from "./PhotoCameraButton";
 
 export function NavigatioBar() {
   return (
@@ -27,7 +28,7 @@ export function NavigatioBar() {
         </NavbarItem>
         {/* TODO: このアイコンを押してカメラを起動するようにする */}
         <NavbarItem>
-          <PhotoCameraIcon />
+          <PhotoCameraButton />
         </NavbarItem>
       </NavbarContent>
 

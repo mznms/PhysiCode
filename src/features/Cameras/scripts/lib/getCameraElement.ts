@@ -1,12 +1,14 @@
 import { getVideoElement } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
-let video: HTMLVideoElement | null = null;
+// カメラが読み込まれていない場合、カメラを読み込みます
+export async function getCameraElement(): Promise<HTMLVideoElement> {
+  const video = getVideoElement();
 
-export async function getCameraElement() {
-  if (video !== null) {
+  if (video.srcObject) {
+    console.log("cached video");
     return video;
   }
-  video = getVideoElement();
+  console.log("uncached video");
 
   const stream = await navigator.mediaDevices.getUserMedia({
     video: true,
@@ -14,19 +16,19 @@ export async function getCameraElement() {
   });
 
   video.srcObject = stream;
-  /*
+
+  return new Promise((resolve) => {
+    /*
   ロードが完了するのを待たないと次のエラーが起こる
   DOMException: The fetching process for the media resource was aborted by the user agent at the user's request.
   */
-  video.onloadedmetadata = () => {
-    if (video) {
-      video.play().catch((e) => {
-        console.error("Error playing video: ", e);
-      });
-    } else {
-      throw new Error("video is null");
-    }
-  };
-
-  return video;
+    video.onloadedmetadata = () => {
+      if (video) {
+        video.play();
+        resolve(video);
+      } else {
+        throw new Error("video is null");
+      }
+    };
+  });
 }
