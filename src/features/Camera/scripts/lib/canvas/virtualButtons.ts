@@ -109,7 +109,7 @@ function buttons_draw(poses: Pose[]) {
   }
 }
 
-function findKeypointByName(
+export function findKeypointByName(
   keypoints: Keypoint[],
   targetName: string,
 ): Keypoint | undefined {
