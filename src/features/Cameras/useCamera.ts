@@ -9,8 +9,8 @@ import "@tensorflow/tfjs-backend-webgl";
 export function useCamera() {
   useEffect(() => {
     async function main() {
-      // await tf.ready();
-      // await tf.setBackend("webgl");
+      await tf.ready();
+      await tf.setBackend("webgl");
       await initVideoCamera();
       const detector = await initDetector();
       const cameraCanvas = getCameraCanvasElement();
