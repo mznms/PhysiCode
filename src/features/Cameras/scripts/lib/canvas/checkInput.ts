@@ -17,8 +17,15 @@ import { contains } from "./virtualButtons";
  *
  */
 
-function putChar(c: string) {
-  console.log(c);
+let latestInput: string | null = null;
+
+function saveChar(c: string) {
+  latestInput = c;
+}
+export function getLatestInput() {
+  let copy = latestInput;
+  latestInput = null;
+  return copy;
 }
 
 function makeCheckInput(base: Base, trigger: Trigger, character: string) {
@@ -51,7 +58,7 @@ function makeCheckInput(base: Base, trigger: Trigger, character: string) {
 
     triggerFulfilledCurrently = true;
     if (!triggerFulfilledPreviously) {
-      return character;
+      saveChar(character);
     }
     return null;
   }

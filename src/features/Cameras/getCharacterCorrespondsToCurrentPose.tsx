@@ -1,4 +1,5 @@
 import * as tf from "@tensorflow/tfjs-core";
+import { getLatestInput } from "./scripts/lib/canvas/checkInput";
 import { drawKeypoints } from "./scripts/lib/canvas/drawKeypoints";
 import { buttons_update } from "./scripts/lib/canvas/virtualButtons";
 import { getCameraElement } from "./scripts/lib/getCameraElement";
@@ -20,6 +21,7 @@ export async function getCharacterCorrespondsToCurrentPose() {
   if (poses.length == 1) {
     drawKeypoints(poses[0].keypoints);
   }
-  const newCharacter = buttons_update(poses);
+  buttons_update(poses);
+  const newCharacter = getLatestInput();
   return newCharacter;
 }
