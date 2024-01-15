@@ -15,7 +15,7 @@ export function PhotoCameraButton() {
       color="primary"
       endContent={<PhotoCameraIcon size={24} />}
     >
-      {isOpen ? "終了" : "身体でプログラミング"}
+      {isOpen ? "終了" : "カメラ起動"}
     </Button>
   );
 }
