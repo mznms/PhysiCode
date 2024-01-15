@@ -1,10 +1,7 @@
 import { MutableRefObject } from "react";
 import { getCharacterCorrespondsToCurrentPose } from "./getCharacterCorrespondsToCurrentPose";
 import { clearCanvas } from "./scripts/lib/canvas/clearCanvas";
-import { getElementById } from "./scripts/utils/getHTMLElement";
-
-let endTime = 0;
-let frameCount = 0;
+import { updateFPS } from "./scripts/lib/updateFPS";
 
 export async function animate(
   currentTime: number,
@@ -12,17 +9,7 @@ export async function animate(
   setCode: (code: string) => void,
   frameId: MutableRefObject<number>,
 ) {
-  let fps = 0;
-  frameCount++;
-
-  if (currentTime - endTime >= 1000) {
-    const fpsElement = getElementById("fps");
-    fps = frameCount;
-    fpsElement.innerText = "FPS : " + fps;
-    endTime = currentTime;
-    frameCount = 0;
-  }
-
+  updateFPS(currentTime);
   clearCanvas();
 
   const characterCorrespondsToCurrentPose =
