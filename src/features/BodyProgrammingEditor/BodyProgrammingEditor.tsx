@@ -1,6 +1,6 @@
 "use client";
-import { BF } from "../BF/BF";
 import { Cameras } from "../Cameras/Cameras";
+import { Interpreter } from "../Interpreter/Interpreter";
 import { Result } from "./Result/Result";
 import { useBodyProgrammingEditor } from "./bodyProgrammingEditorContext";
 
@@ -16,7 +16,7 @@ export function BodyProgrammingEditor() {
         </div>
       ) : (
         <div className="px-4 mx-auto">
-          <BF />
+          <Interpreter />
         </div>
       )}
     </>

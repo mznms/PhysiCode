@@ -3,7 +3,7 @@ import { Input } from "../Input/Input";
 import { Memory } from "../Memory/Memory";
 import { Output } from "../Output/Output";
 
-export function BF() {
+export function Interpreter() {
   return (
     <div className="flex flex-col gap-4">
       <Code />
