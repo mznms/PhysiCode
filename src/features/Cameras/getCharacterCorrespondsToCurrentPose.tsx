@@ -2,9 +2,11 @@ import * as tf from "@tensorflow/tfjs-core";
 import { getLatestInput } from "./scripts/lib/canvas/checkInput";
 import { drawKeypoints } from "./scripts/lib/canvas/drawKeypoints";
 import { buttons_update } from "./scripts/lib/canvas/virtualButtons";
+import { drawCameraCanvas } from "./scripts/lib/drawCameraCanvas";
 import { getCameraElement } from "./scripts/lib/getCameraElement";
 import { getDetector } from "./scripts/lib/getDetector";
 import "@tensorflow/tfjs-backend-webgl";
+import { getCameraCanvasElement } from "./scripts/utils/getHTMLElement";
 
 let hasInitialized = false;
 
@@ -17,7 +19,10 @@ export async function getCharacterCorrespondsToCurrentPose() {
   const cameraElement = await getCameraElement();
   const detector = await getDetector();
 
-  const poses = await detector.estimatePoses(cameraElement);
+  drawCameraCanvas();
+  const cameraCanvas = getCameraCanvasElement();
+
+  const poses = await detector.estimatePoses(cameraCanvas);
   if (poses.length == 1) {
     drawKeypoints(poses[0].keypoints);
   }
