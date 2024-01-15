@@ -2,7 +2,7 @@ import {
   MemoryBoundError,
   UnclosedBracketError,
   BFInterpreter,
-} from "../src/features/interpreter/scripts/interpreter";
+} from "../src/features/Interpreter/scripts/interpreter";
 
 describe("正常系テスト", () => {
   test("challenge 1 (1)", () => {
