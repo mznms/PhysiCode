@@ -38,3 +38,11 @@ export function getElementById(id: string) {
   }
   return element;
 }
+
+export function getCameraCanvasElement() {
+  const camera = document.getElementById("camera-canvas");
+  if (!isCanvasElement(camera)) {
+    throw new Error("Canvas element not found or is not a canvas element");
+  }
+  return camera;
+}
