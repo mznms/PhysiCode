@@ -8,7 +8,13 @@ export function Cameras() {
       <h1>tensorflow.js test</h1>
       <h3 id="fps">FPS : 0</h3>
       <div id="container" className="relative">
-        <video id="video" className="invisible"></video>
+        <video
+          id="video"
+          className="invisible"
+          autoPlay
+          muted
+          playsInline
+        ></video>
         <canvas
           id="camera-canvas"
           className="absolute top-0 left-0 z-0 scale-x-[-1]"
