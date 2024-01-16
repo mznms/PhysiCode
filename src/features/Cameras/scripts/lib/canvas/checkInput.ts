@@ -19,6 +19,7 @@ import { contains } from "./virtualButtons";
 let latestInput: string | null = null;
 
 function saveChar(c: string) {
+  console.log(c);
   latestInput = c;
 }
 export function getLatestInput() {

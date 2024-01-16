@@ -18,7 +18,7 @@ export function useInterpreter() {
     const interpreter = new BFInterpreter(code, input);
     while (true) {
       interpreter.stepwiseExecution();
-      const currentMemory = interpreter.getMemDump();
+      const currentMemory = [...interpreter.getMemDump()];
       setMemory(currentMemory);
 
       const currentOutput = interpreter.getOutput();
@@ -29,7 +29,7 @@ export function useInterpreter() {
       if (interpreter.isHalted()) {
         break;
       }
-      await wait(1000);
+      await wait(50);
     }
     setIsRunning(false);
   }
