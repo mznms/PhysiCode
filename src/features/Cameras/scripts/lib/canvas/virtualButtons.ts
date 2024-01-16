@@ -13,7 +13,7 @@ export const virtualButtons = {
   grid_height: 3,
   grid_width: 3,
   height_rate: [0.25, 0.5, 0.25], // 各行の幅の比
-  width_rate: [0.25, 0.5, 0.25], // 各列の幅の比
+  width_rate: [0.3, 0.4, 0.3], // 各列の幅の比
   buttons_visibility: [
     [true, false, true],
     [true, false, true],
