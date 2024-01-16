@@ -2,27 +2,28 @@
 import { useCamera } from "./useCamera";
 
 export function Cameras() {
-  useCamera();
+  const { videoRef } = useCamera();
+
   return (
-    <div>
-      <h1>tensorflow.js test</h1>
-      <h3 id="fps">FPS : 0</h3>
-      <div id="container" className="relative">
-        <video
-          id="video"
-          className="invisible"
-          autoPlay
-          muted
-          playsInline
-        ></video>
-        <canvas
-          id="camera-canvas"
-          className="absolute top-0 left-0 z-0 scale-x-[-1]"
-        ></canvas>
-        <canvas
-          id="canvas"
-          className="absolute top-0 left-0 z-10 scale-x-[-1]"
-        ></canvas>
+    <div id="container" className="relative shrink-0">
+      <video
+        id="video"
+        className="hidden"
+        ref={videoRef}
+        autoPlay
+        muted
+        playsInline
+      />
+      <canvas
+        id="camera-canvas"
+        className="scale-x-[-1] object-cover w-screen h-[100vw] lg:w-[min(calc(100vh-64px-32px),calc(100vw-340px))] lg:h-[min(calc(100vh-64px-32px),calc(100vw-340px))] shrink-0"
+      />
+      <canvas
+        id="canvas"
+        className="absolute top-0 left-0 scale-x-[-1] object-cover w-screen h-[100vw] lg:w-[min(calc(100vh-64px-32px),calc(100vw-340px))] lg:h-[min(calc(100vh-64px-32px),calc(100vw-340px))]"
+      />
+      <div id="fps" className="absolute top-0 left-1">
+        FPS : 0
       </div>
     </div>
   );

@@ -1,22 +1,47 @@
-import * as tf from "@tensorflow/tfjs-core";
-import { useEffect } from "react";
-import { initDetector } from "./scripts/lib/initDetector";
-import { initVideoCamera } from "./scripts/lib/initVideoCamera";
-import { main_loop } from "./scripts/mainLoop";
-import { getCameraCanvasElement } from "@/features/Cameras/scripts/utils/getHTMLElement";
-import "@tensorflow/tfjs-backend-webgl";
+import { useEffect, useRef } from "react";
+import { useCode } from "../Code/codeContext";
+import { animate } from "./animate";
+import { initVirtualButtons } from "./scripts/lib/canvas/virtualButtons";
 
 export function useCamera() {
-  useEffect(() => {
-    async function main() {
-      await tf.ready();
-      await tf.setBackend("webgl");
-      await initVideoCamera();
-      const detector = await initDetector();
-      const cameraCanvas = getCameraCanvasElement();
-      main_loop(detector, cameraCanvas);
-    }
+  const { code, setCode } = useCode();
+  const frameId = useRef(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-    main();
+  useEffect(() => {
+    const currentVideoRef = videoRef.current;
+    initVirtualButtons();
+    return () => {
+      console.log("animate");
+      cancelAnimationFrame(frameId.current);
+
+      if (currentVideoRef) {
+        unloadCamera(currentVideoRef);
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    frameId.current = requestAnimationFrame((currentTime) =>
+      animate(currentTime, code, setCode, frameId),
+    );
+    return () => {
+      cancelAnimationFrame(frameId.current);
+    };
+  }, [code, setCode]);
+
+  return { videoRef };
+}
+
+function unloadCamera(cameraElement: HTMLVideoElement) {
+  if (cameraElement.srcObject instanceof MediaStream) {
+    const stream = cameraElement.srcObject;
+    const tracks = stream.getTracks();
+
+    tracks.forEach((track) => {
+      track.stop();
+    });
+
+    cameraElement.srcObject = null;
+  }
 }

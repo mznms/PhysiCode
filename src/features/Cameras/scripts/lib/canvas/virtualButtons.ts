@@ -49,7 +49,9 @@ export function initVirtualButtons() {
 export function buttons_update(poses: Pose[]) {
   buttons_draw_grid();
   buttons_draw(poses);
-  if (poses.length != 0) virtualButtons.getInputs(poses[0].keypoints);
+  if (poses.length != 0) {
+    virtualButtons.getInputs(poses[0].keypoints);
+  }
 }
 function buttons_draw_grid() {
   // Canvas要素を取得
