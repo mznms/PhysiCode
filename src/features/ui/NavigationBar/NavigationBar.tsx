@@ -38,8 +38,10 @@ export function NavigatioBar() {
 function Brand() {
   return (
     <NavbarBrand>
-      <RunningManIcon size={40} />
-      <p className="font-bold">PhysiCode</p>
+      <Link color="foreground" href="/">
+        <RunningManIcon size={40} />
+        <p className="font-bold">PhysiCode</p>
+      </Link>
     </NavbarBrand>
   );
 }
@@ -48,23 +50,8 @@ function Menu() {
   return (
     <NavbarMenu>
       <NavbarMenuItem>
-        <Link className="w-full" color="foreground" href="/" size="lg">
-          ホーム
-        </Link>
-      </NavbarMenuItem>
-      <NavbarMenuItem>
-        <Link className="w-full" color="foreground" href="/free-play" size="lg">
-          フリーモード
-        </Link>
-      </NavbarMenuItem>
-      <NavbarMenuItem>
-        <Link
-          className="w-full"
-          color="foreground"
-          href="/challenge-play"
-          size="lg"
-        >
-          チャレンジモード
+        <Link className="w-full" color="foreground" href="/challenge" size="lg">
+          チャレンジ
         </Link>
       </NavbarMenuItem>
     </NavbarMenu>
@@ -75,18 +62,8 @@ function NavLinks() {
   return (
     <>
       <NavbarItem>
-        <Link color="foreground" href="/">
-          ホーム
-        </Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Link color="foreground" href="/free-play">
-          フリーモード
-        </Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Link color="foreground" href="/challenge-play">
-          チャレンジモード
+        <Link color="foreground" href="/challenge">
+          チャレンジ
         </Link>
       </NavbarItem>
     </>
