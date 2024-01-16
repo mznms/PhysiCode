@@ -1,20 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useBodyProgrammingEditor } from "../BodyProgrammingEditor/bodyProgrammingEditorContext";
 import { useCode } from "../Code/codeContext";
 import { animate } from "./animate";
 import { initVirtualButtons } from "./scripts/lib/canvas/virtualButtons";
 import { getDetector } from "./scripts/lib/getDetector";
-import { useCamera } from "./useCamera";
 
 export function usePoseDetection() {
   const { code, setCode } = useCode();
-  const { setIsLoading } = useCamera();
+  const { isLoading, setIsLoading } = useBodyProgrammingEditor();
   const videoRef = useRef<HTMLVideoElement>(null);
   const frameId = useRef(0);
 
   useEffect(() => {
     async function initDetector() {
       setIsLoading(true);
-
       // 一回目に呼ぶと detector はメモリにキャッシュされる
       await getDetector();
 
@@ -47,7 +46,7 @@ export function usePoseDetection() {
     };
   }, [code, setCode]);
 
-  return { videoRef };
+  return { isLoading, videoRef };
 }
 
 function unloadCamera(cameraElement: HTMLVideoElement) {
