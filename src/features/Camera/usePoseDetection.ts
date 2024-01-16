@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useBodyProgrammingEditor } from "../BodyProgrammingEditor/bodyProgrammingEditorContext";
 import { useCode } from "../Code/codeContext";
 import { animate } from "./animate";
+import { initCenteringPromptFontSize } from "./scripts/lib/canvas/centeringPrompt";
 import { initVirtualButtons } from "./scripts/lib/canvas/virtualButtons";
 import { getDetector } from "./scripts/lib/getDetector";
 
@@ -24,6 +25,7 @@ export function usePoseDetection() {
     const currentVideoRef = videoRef.current;
     initVirtualButtons();
     initDetector();
+    initCenteringPromptFontSize();
 
     return () => {
       console.log("unmount");

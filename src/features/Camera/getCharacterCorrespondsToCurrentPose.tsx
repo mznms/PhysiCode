@@ -1,3 +1,4 @@
+import { centeringPrompt } from "./scripts/lib/canvas/centeringPrompt";
 import { getLatestInput } from "./scripts/lib/canvas/checkInput";
 import { drawKeypoints } from "./scripts/lib/canvas/drawKeypoints";
 import { buttons_update } from "./scripts/lib/canvas/virtualButtons";
@@ -24,6 +25,7 @@ export async function getCharacterCorrespondsToCurrentPose() {
     drawKeypoints(poses[0].keypoints);
   }
   buttons_update(poses);
+  centeringPrompt(poses);
   const newCharacter = getLatestInput();
   return newCharacter;
 }
