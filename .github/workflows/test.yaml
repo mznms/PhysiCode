@@ -7,7 +7,7 @@ on:
     types: [opened, reopened, synchronize, ready_for_review]
 
 env:
-  WORKING_DIRECTORY: application
+  WORKING_DIRECTORY: ./
 
 jobs:
   Test:
@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: "18.18.1"
           cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
+          cache-dependency-path: "package-lock.json"
       - name: Install packages
         run: npm ci
       - name: Show coverage
