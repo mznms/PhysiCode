@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { BodyProgrammingEditorProvider } from "@/features/BodyProgrammingEditor/bodyProgrammingEditorContext";
 import { CodeProvider } from "@/features/Code/codeContext";
 import { InputProvider } from "@/features/Input/inputContext";
-import { MemoryProvider } from "@/features/Memory/memoryProvider";
+import { MemoryProvider } from "@/features/Memory/memoryContext";
 import { OutputProvider } from "@/features/Output/outputContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {

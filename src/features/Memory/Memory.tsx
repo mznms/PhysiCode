@@ -1,5 +1,5 @@
 "use client";
-import { useMemory } from "./memoryProvider";
+import { useMemory } from "./memoryContext";
 
 export function Memory() {
   const { memory } = useMemory();

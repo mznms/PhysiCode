@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCode } from "../Code/codeContext";
 import { useInput } from "../Input/inputContext";
-import { useMemory } from "../Memory/memoryProvider";
+import { useMemory } from "../Memory/memoryContext";
 import { useOutput } from "../Output/outputContext";
 import { BFInterpreter } from "./scripts/interpreter";
 import { wait } from "./scripts/wait";
