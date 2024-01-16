@@ -1,24 +1,27 @@
 "use client";
+import { Spinner } from "@nextui-org/react";
 import { Camera } from "../Camera/Camera";
-import { Interpreter } from "../Interpreter/Interpreter";
+import { usePoseDetection } from "../Camera/usePoseDetection";
 import { Result } from "./Result/Result";
-import { useBodyProgrammingEditor } from "./bodyProgrammingEditorContext";
 
 export function BodyProgrammingEditor() {
-  const { isOpen } = useBodyProgrammingEditor();
+  const { isLoading, videoRef } = usePoseDetection();
 
   return (
     <>
-      {isOpen ? (
-        <div className="lg:flex gap-2 items-stretch lg:mx-4">
-          <Camera />
-          <Result />
-        </div>
-      ) : (
-        <div className="px-4 mx-auto">
-          <Interpreter />
+      {isLoading && (
+        <div className="absolute z-50 top-[64px] left-0 w-full h-full bg-background">
+          <Spinner className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]" />
         </div>
       )}
+      <div
+        className={`lg:flex gap-2 items-stretch lg:mx-4 ${
+          isLoading && "hidden"
+        }`}
+      >
+        <Camera ref={videoRef} />
+        <Result />
+      </div>
     </>
   );
 }

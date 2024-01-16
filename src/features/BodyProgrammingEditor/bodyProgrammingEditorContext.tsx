@@ -1,14 +1,18 @@
 import { createContext, useContext, useMemo, useState } from "react";
 
-export type bodyProgrammingEditorContextType = {
+export type BodyProgrammingEditorContextType = {
   isOpen: boolean;
+  isLoading: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  setIsLoading: (isLoading: boolean) => void;
 };
 
-export const bodyProgrammingEditorContext =
-  createContext<bodyProgrammingEditorContextType>({
+export const BodyProgrammingEditorContext =
+  createContext<BodyProgrammingEditorContextType>({
     isOpen: false,
+    isLoading: false,
     setIsOpen: () => {},
+    setIsLoading: () => {},
   });
 
 type Props = {
@@ -17,15 +21,19 @@ type Props = {
 
 export function BodyProgrammingEditorProvider({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const value = useMemo(() => ({ isOpen, setIsOpen }), [isOpen, setIsOpen]);
+  const [isLoading, setIsLoading] = useState(false);
+  const value = useMemo(
+    () => ({ isOpen, isLoading, setIsOpen, setIsLoading }),
+    [isOpen, isLoading, setIsOpen, setIsLoading],
+  );
 
   return (
-    <bodyProgrammingEditorContext.Provider value={value}>
+    <BodyProgrammingEditorContext.Provider value={value}>
       {children}
-    </bodyProgrammingEditorContext.Provider>
+    </BodyProgrammingEditorContext.Provider>
   );
 }
 
 export function useBodyProgrammingEditor() {
-  return useContext(bodyProgrammingEditorContext);
+  return useContext(BodyProgrammingEditorContext);
 }

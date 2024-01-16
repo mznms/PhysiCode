@@ -4,7 +4,8 @@ import { PhotoCameraIcon } from "../Icon/PhotoCamera";
 import { useBodyProgrammingEditor } from "@/features/BodyProgrammingEditor/bodyProgrammingEditorContext";
 
 export function PhotoCameraButton() {
-  const { isOpen, setIsOpen } = useBodyProgrammingEditor();
+  const { isOpen, setIsOpen, isLoading, setIsLoading } =
+    useBodyProgrammingEditor();
 
   function handleClick() {
     setIsOpen(!isOpen);
@@ -14,6 +15,7 @@ export function PhotoCameraButton() {
       onClick={handleClick}
       color="primary"
       endContent={<PhotoCameraIcon size={24} />}
+      isLoading={isLoading}
     >
       {isOpen ? "終了" : "起動"}
     </Button>

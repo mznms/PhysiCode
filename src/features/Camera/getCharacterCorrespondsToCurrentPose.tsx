@@ -1,22 +1,19 @@
-import * as tf from "@tensorflow/tfjs-core";
 import { getLatestInput } from "./scripts/lib/canvas/checkInput";
 import { drawKeypoints } from "./scripts/lib/canvas/drawKeypoints";
 import { buttons_update } from "./scripts/lib/canvas/virtualButtons";
 import { drawCameraCanvas } from "./scripts/lib/drawCameraCanvas";
 import { getCameraElement } from "./scripts/lib/getCameraElement";
 import { getDetector } from "./scripts/lib/getDetector";
-import "@tensorflow/tfjs-backend-webgl";
 import { getCameraCanvasElement } from "./scripts/utils/getHTMLElement";
 
-let hasInitialized = false;
-
+// ! この関数を呼び出す前に detector の初期化を行っておくこと
 export async function getCharacterCorrespondsToCurrentPose() {
-  if (!hasInitialized) {
-    await tf.ready();
-    await tf.setBackend("webgl");
-    hasInitialized = true;
+  async function waitUntilCameraIsReady() {
+    await getCameraElement();
   }
-  const cameraElement = await getCameraElement();
+
+  await waitUntilCameraIsReady();
+
   const detector = await getDetector();
 
   drawCameraCanvas();

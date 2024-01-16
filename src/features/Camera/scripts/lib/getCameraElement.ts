@@ -5,10 +5,10 @@ export async function getCameraElement(): Promise<HTMLVideoElement> {
   const video = getVideoElement();
 
   if (video.srcObject) {
-    console.log("cached video");
+    // console.log("cached video");
     return video;
   }
-  console.log("uncached video");
+  // console.log("uncached video");
 
   const stream = await navigator.mediaDevices.getUserMedia({
     video: true,
