@@ -1,10 +1,10 @@
 "use client";
 import { Button } from "@nextui-org/button";
 import { PhotoCameraIcon } from "../Icon/PhotoCamera";
-import { useBodyProgrammingEditor } from "@/features/BodyProgrammingEditor/bodyProgrammingEditorContext";
+import { useCamera } from "@/features/Camera/useCamera";
 
 export function PhotoCameraButton() {
-  const { isOpen, setIsOpen } = useBodyProgrammingEditor();
+  const { isOpen, setIsOpen } = useCamera();
 
   function handleClick() {
     setIsOpen(!isOpen);

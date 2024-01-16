@@ -10,6 +10,8 @@ export async function animate(
   frameId: MutableRefObject<number>,
 ) {
   updateFPS(currentTime);
+  console.log(frameId);
+
   clearCanvas();
 
   const characterCorrespondsToCurrentPose =

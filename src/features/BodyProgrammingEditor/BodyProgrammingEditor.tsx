@@ -1,11 +1,11 @@
 "use client";
 import { Camera } from "../Camera/Camera";
+import { useCamera } from "../Camera/useCamera";
 import { Interpreter } from "../Interpreter/Interpreter";
 import { Result } from "./Result/Result";
-import { useBodyProgrammingEditor } from "./bodyProgrammingEditorContext";
 
 export function BodyProgrammingEditor() {
-  const { isOpen } = useBodyProgrammingEditor();
+  const { isOpen } = useCamera();
 
   return (
     <>

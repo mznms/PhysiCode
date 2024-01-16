@@ -1,8 +1,8 @@
 "use client";
-import { useCamera } from "./useCamera";
+import { usePoseDetection } from "./usePoseDetection";
 
 export function Camera() {
-  const { videoRef } = useCamera();
+  const { videoRef } = usePoseDetection();
 
   return (
     <div id="container" className="relative shrink-0">

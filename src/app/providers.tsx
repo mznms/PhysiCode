@@ -2,7 +2,7 @@
 
 import { NextUIProvider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { BodyProgrammingEditorProvider } from "@/features/BodyProgrammingEditor/bodyProgrammingEditorContext";
+import { CameraProvider } from "@/features/Camera/cameraContext";
 import { CodeProvider } from "@/features/Code/codeContext";
 import { InputProvider } from "@/features/Input/inputContext";
 import { MemoryProvider } from "@/features/Memory/memoryContext";
@@ -16,9 +16,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <MemoryProvider>
           <OutputProvider>
             <InputProvider>
-              <BodyProgrammingEditorProvider>
-                {children}
-              </BodyProgrammingEditorProvider>
+              <CameraProvider>{children}</CameraProvider>
             </InputProvider>
           </OutputProvider>
         </MemoryProvider>
