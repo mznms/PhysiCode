@@ -1,4 +1,3 @@
-import { draw } from "@tensorflow/tfjs-core/dist/ops/browser";
 import { Keypoint, Pose } from "@tensorflow-models/pose-detection/dist/types";
 import { virtualButtons, contains, findKeypointByName } from "./virtualButtons";
 import {
@@ -7,8 +6,8 @@ import {
   getCameraCanvasElement,
 } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
-const img = new Image();
-img.src = "https://svgsilh.com/svg/310276.svg";
+// const img = new NextImage()
+// img.src = "https://svgsilh.com/svg/310276.svg";
 const centeringPromptText = "全身を中央に映してください";
 
 let fontSize = 1;
@@ -75,9 +74,9 @@ function drawCenteringPrompt() {
   const canvas = getCanvasElement();
   const cameraContext = getCanvasContext(canvas);
 
-  cameraContext.globalAlpha = 0.4;
-  cameraContext.drawImage(img, 0, 0, canvas.width, canvas.height);
-  cameraContext.globalAlpha = 1;
+  // cameraContext.globalAlpha = 0.4;
+  // cameraContext.drawImage(img, 0, 0, canvas.width, canvas.height);
+  // cameraContext.globalAlpha = 1;
 
   cameraContext.textAlign = "center";
   cameraContext.scale(-1, 1); // キャンバスが水平反転しているので文字も反転させる
