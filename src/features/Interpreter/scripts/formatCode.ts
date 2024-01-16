@@ -8,6 +8,8 @@
  * @returns フォーマットされた BF コード
  */
 export function formatCode(code: string, threshold: number = 2) {
+  if (threshold < 2) threshold = 2;
+
   let formattedCode = "";
   let count = 1;
 
