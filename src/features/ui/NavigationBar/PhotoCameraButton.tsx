@@ -4,7 +4,7 @@ import { PhotoCameraIcon } from "../Icon/PhotoCamera";
 import { useCamera } from "@/features/Camera/useCamera";
 
 export function PhotoCameraButton() {
-  const { isOpen, setIsOpen } = useCamera();
+  const { isOpen, setIsOpen, isLoading } = useCamera();
 
   function handleClick() {
     setIsOpen(!isOpen);
@@ -14,6 +14,7 @@ export function PhotoCameraButton() {
       onClick={handleClick}
       color="primary"
       endContent={<PhotoCameraIcon size={24} />}
+      isLoading={isLoading}
     >
       {isOpen ? "終了" : "起動"}
     </Button>

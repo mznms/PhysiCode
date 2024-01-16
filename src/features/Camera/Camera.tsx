@@ -3,16 +3,15 @@ import { usePoseDetection } from "./usePoseDetection";
 
 export function Camera() {
   const { videoRef } = usePoseDetection();
-
   return (
     <div id="container" className="relative shrink-0">
       <video
         id="video"
         className="hidden"
-        ref={videoRef}
         autoPlay
         muted
         playsInline
+        ref={videoRef}
       />
       <canvas
         id="camera-canvas"
