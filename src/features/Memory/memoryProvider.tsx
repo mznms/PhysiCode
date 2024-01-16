@@ -1,30 +1,15 @@
-import {
-  SetStateAction,
-  createContext,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
-export type Block = {
-  isFocused: boolean;
-  value: number;
-};
+const MEMORY_SIZE = 64; // この数値が何を意味するのかを示す名前
+const initialMemory = Array.from({ length: MEMORY_SIZE }, () => 0);
 
 export type memoryContextType = {
-  memory: Block[];
-  setMemory: React.Dispatch<SetStateAction<Block[]>>;
+  memory: number[];
+  setMemory: (memory: number[]) => void;
 };
 
-const initialValue: Block[] = [...Array(32)].map(() => {
-  return {
-    isFocused: false,
-    value: 0,
-  };
-});
-
 export const memoryContext = createContext<memoryContextType>({
-  memory: initialValue,
+  memory: initialMemory,
   setMemory: () => {},
 });
 
@@ -33,7 +18,7 @@ type Props = {
 };
 
 export function MemoryProvider({ children }: Props) {
-  const [memory, setMemory] = useState(initialValue);
+  const [memory, setMemory] = useState(initialMemory);
   const value = useMemo(() => ({ memory, setMemory }), [memory, setMemory]);
 
   return (
