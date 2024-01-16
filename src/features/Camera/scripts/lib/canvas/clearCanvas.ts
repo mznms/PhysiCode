@@ -1,7 +1,7 @@
 import {
   getCanvasContext,
   getCanvasElement,
-} from "@/features/Cameras/scripts/utils/getHTMLElement";
+} from "@/features/Camera/scripts/utils/getHTMLElement";
 
 export function clearCanvas() {
   // Canvas要素を取得

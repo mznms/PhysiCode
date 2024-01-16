@@ -1,5 +1,5 @@
 "use client";
-import { Cameras } from "../Cameras/Cameras";
+import { Camera } from "../Camera/Camera";
 import { Interpreter } from "../Interpreter/Interpreter";
 import { Result } from "./Result/Result";
 import { useBodyProgrammingEditor } from "./bodyProgrammingEditorContext";
@@ -11,7 +11,7 @@ export function BodyProgrammingEditor() {
     <>
       {isOpen ? (
         <div className="lg:flex gap-2 items-stretch lg:mx-4">
-          <Cameras />
+          <Camera />
           <Result />
         </div>
       ) : (
