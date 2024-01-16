@@ -22,7 +22,7 @@ export function NavigatioBar() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem className="sm:hidden">
+        <NavbarItem className="sm:hidden h-full">
           <NavbarMenuToggle />
         </NavbarItem>
         <NavbarItem>
