@@ -18,11 +18,26 @@ export function drawKeypoints(keypoints: Keypoint[]) {
 
   // 点を描画
   context.fillStyle = "rgba(255, 255, 0, 1)";
-  for (let pnt of keypoints) {
+  const valid_keypoints = [
+    "right_wrist",
+    "left_wrist",
+    "right_ankle",
+    "left_ankle",
+  ];
+  for (let keypointName of valid_keypoints) {
+    let pnt = findKeypointByName(keypoints, keypointName);
+    if (pnt === undefined) continue;
     let x = pnt.x;
     let y = pnt.y;
-    if (pnt.score && pnt.score > 0.3) context.fillRect(x, y, 10, 10);
+    if (pnt.score && pnt.score > 0.2) context.fillRect(x, y, 10, 10);
   }
+}
+
+function findKeypointByName(
+  keypoints: Keypoint[],
+  targetName: string,
+): Keypoint | undefined {
+  return keypoints.find((keypoint) => keypoint.name === targetName);
 }
 
 // Canvasのサイズをvideoと合わせる

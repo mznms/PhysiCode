@@ -16,7 +16,6 @@ import { contains } from "./virtualButtons";
  *  putCharを起動する
  *
  */
-
 let latestInput: string | null = null;
 
 function saveChar(c: string) {
@@ -29,14 +28,15 @@ export function getLatestInput() {
 }
 
 function makeCheckInput(base: Base, trigger: Trigger, character: string) {
-  let triggerFulfilledCurrently = false;
+  let matchPoseCurrently = false;
 
   function checkInput(keypoints: Keypoint[]) {
+    let matchPosePreviously = matchPoseCurrently;
+    matchPoseCurrently = false;
+
     // ベースを満たしているか判定
     if (!contains(base.left_ankle, keypoints, "left_ankle")) return null;
     if (!contains(base.right_ankle, keypoints, "right_ankle")) return null;
-    let triggerFulfilledPreviously = triggerFulfilledCurrently;
-    triggerFulfilledCurrently = false;
 
     // トリガーを満たしているか判定
     let satisfyTrigger = false;
@@ -56,8 +56,8 @@ function makeCheckInput(base: Base, trigger: Trigger, character: string) {
 
     if (!satisfyTrigger) return null;
 
-    triggerFulfilledCurrently = true;
-    if (!triggerFulfilledPreviously) {
+    matchPoseCurrently = true;
+    if (!matchPosePreviously) {
       saveChar(character);
     }
     return null;
