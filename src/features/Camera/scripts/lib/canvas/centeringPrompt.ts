@@ -1,5 +1,6 @@
+import { draw } from "@tensorflow/tfjs-core/dist/ops/browser";
 import { Keypoint, Pose } from "@tensorflow-models/pose-detection/dist/types";
-import { virtualButtons, findKeypointByName } from "./virtualButtons";
+import { virtualButtons, contains, findKeypointByName } from "./virtualButtons";
 import {
   getCanvasContext,
   getCanvasElement,
@@ -33,34 +34,63 @@ export function initCenteringPromptFontSize() {
 }
 
 export function centeringPrompt(poses: Pose[]) {
+  let keypoints: Keypoint[] = poses.length != 0 ? poses[0].keypoints : Array();
+
+  // nose
+  if (!containsOnScreen(keypoints, "nose")) {
+    drawCenteringPrompt();
+    return;
+  }
+
+  // wrist
+  if (!containsOnScreen(keypoints, "left_wrist")) {
+    drawCenteringPrompt();
+    return;
+  }
+  if (!containsOnScreen(keypoints, "right_wrist")) {
+    drawCenteringPrompt();
+    return;
+  }
+
+  // ankle
+  let isAnkleAtBottomOfScreen = false;
+  for (let i = 0; i < virtualButtons.grid_width; i++) {
+    if (contains({ h: 2, w: i }, keypoints, "left_ankle")) {
+      isAnkleAtBottomOfScreen = true;
+      break;
+    }
+    if (contains({ h: 2, w: i }, keypoints, "right_ankle")) {
+      isAnkleAtBottomOfScreen = true;
+      break;
+    }
+  }
+  if (!isAnkleAtBottomOfScreen) {
+    drawCenteringPrompt();
+    return;
+  }
+}
+
+function drawCenteringPrompt() {
   // Canvas要素を取得
   const canvas = getCanvasElement();
   const cameraContext = getCanvasContext(canvas);
 
-  let keypoints: Keypoint[] = poses.length != 0 ? poses[0].keypoints : Array();
+  cameraContext.globalAlpha = 0.4;
+  cameraContext.drawImage(img, 0, 0, canvas.width, canvas.height);
+  cameraContext.globalAlpha = 1;
 
-  for (let target of virtualButtons.valid_keypoints) {
-    if (!contains(keypoints, target)) {
-      cameraContext.globalAlpha = 0.4;
-      cameraContext.drawImage(img, 0, 0, canvas.width, canvas.height);
-      cameraContext.globalAlpha = 1;
-
-      cameraContext.textAlign = "center";
-      cameraContext.scale(-1, 1); // キャンバスが水平反転しているので文字も反転させる
-      cameraContext.fillStyle = "red";
-      cameraContext.font = centeringPromptFont;
-      cameraContext.fillText(
-        centeringPromptText,
-        -canvas.width / 2, // scale で反転させているため負の値にする
-        (canvas.height * 2) / 3,
-      );
-
-      return;
-    }
-  }
+  cameraContext.textAlign = "center";
+  cameraContext.scale(-1, 1); // キャンバスが水平反転しているので文字も反転させる
+  cameraContext.fillStyle = "red";
+  cameraContext.font = centeringPromptFont;
+  cameraContext.fillText(
+    centeringPromptText,
+    -canvas.width / 2, // scale で反転させているため負の値にする
+    (canvas.height * 2) / 3,
+  );
 }
 
-function contains(keypoints: Keypoint[], target: string) {
+function containsOnScreen(keypoints: Keypoint[], target: string) {
   let pnt = findKeypointByName(keypoints, target);
 
   if (pnt == null) return false;
