@@ -1,9 +1,8 @@
 "use client";
-import { Button } from "@nextui-org/react";
 import { useMemory } from "./memoryProvider";
 
 export function Memory() {
-  const { memory, setMemory } = useMemory();
+  const { memory } = useMemory();
 
   const onlyFirst64 = memory.slice(0, 64);
   return (
@@ -18,7 +17,6 @@ export function Memory() {
           );
         })}
       </div>
-      <Button onClick={() => setMemory(memory.map((v) => v + 1))}>+1</Button>
     </div>
   );
 }
