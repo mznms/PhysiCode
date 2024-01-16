@@ -1,7 +1,7 @@
 "use client";
 import { useCamera } from "./useCamera";
 
-export function Cameras() {
+export function Camera() {
   const { videoRef } = useCamera();
 
   return (

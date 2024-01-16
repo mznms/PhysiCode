@@ -3,7 +3,7 @@ import {
   getCameraCanvasElement,
   getCanvasContext,
   getCanvasElement,
-} from "@/features/Cameras/scripts/utils/getHTMLElement";
+} from "@/features/Camera/scripts/utils/getHTMLElement";
 
 // canvas上にkeypointsを元に点を描画する
 // canvasはvideoと重ねて表示される

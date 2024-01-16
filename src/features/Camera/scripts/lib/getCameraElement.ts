@@ -1,4 +1,4 @@
-import { getVideoElement } from "@/features/Cameras/scripts/utils/getHTMLElement";
+import { getVideoElement } from "@/features/Camera/scripts/utils/getHTMLElement";
 
 // カメラが読み込まれていない場合、カメラを読み込みます
 export async function getCameraElement(): Promise<HTMLVideoElement> {

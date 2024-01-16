@@ -1,9 +1,9 @@
-import { Cameras } from "@/features/Cameras/Cameras";
+import { BodyProgrammingEditor } from "@/features/BodyProgrammingEditor/BodyProgrammingEditor";
 
-export default function Home() {
+export default function FreePlay() {
   return (
-    <main>
-      <Cameras />
+    <main className="max-w-screen-xl mx-auto">
+      <BodyProgrammingEditor />
     </main>
   );
 }

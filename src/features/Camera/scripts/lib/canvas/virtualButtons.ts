@@ -4,7 +4,7 @@ import { makeFuncGetInputs } from "./checkInput";
 import {
   getCanvasContext,
   getCanvasElement,
-} from "@/features/Cameras/scripts/utils/getHTMLElement";
+} from "@/features/Camera/scripts/utils/getHTMLElement";
 
 /**
  * 3x3のグリッドとしてボタンを配置する
