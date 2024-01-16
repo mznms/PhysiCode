@@ -4,7 +4,7 @@ import {
   getCanvasContext,
   getCanvasElement,
   getCameraCanvasElement,
-} from "@/features/Cameras/scripts/utils/getHTMLElement";
+} from "@/features/Camera/scripts/utils/getHTMLElement";
 
 // const img = new NextImage()
 // img.src = "https://svgsilh.com/svg/310276.svg";
