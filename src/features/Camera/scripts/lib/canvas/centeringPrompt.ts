@@ -6,6 +6,8 @@ import {
   getCameraCanvasElement,
 } from "@/features/Cameras/scripts/utils/getHTMLElement";
 
+const img = new Image();
+img.src = "https://svgsilh.com/svg/310276.svg";
 const centeringPromptText = "全身を中央に映してください";
 
 let fontSize = 1;
@@ -39,6 +41,10 @@ export function centeringPrompt(poses: Pose[]) {
 
   for (let target of virtualButtons.valid_keypoints) {
     if (!contains(keypoints, target)) {
+      cameraContext.globalAlpha = 0.4;
+      cameraContext.drawImage(img, 0, 0, canvas.width, canvas.height);
+      cameraContext.globalAlpha = 1;
+
       cameraContext.textAlign = "center";
       cameraContext.scale(-1, 1); // キャンバスが水平反転しているので文字も反転させる
       cameraContext.fillStyle = "red";
