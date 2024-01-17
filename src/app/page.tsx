@@ -6,7 +6,7 @@ import { Interpreter } from "@/features/Interpreter/Interpreter";
 export default function FreePlay() {
   const { isOpen } = useBodyProgrammingEditor();
   return (
-    <main className="max-w-screen-xl mx-auto px-4">
+    <main className="max-w-screen-xl mx-auto lg:px-4">
       {isOpen ? <BodyProgrammingEditor /> : <Interpreter />}
     </main>
   );
