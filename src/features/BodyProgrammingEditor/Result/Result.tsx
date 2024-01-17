@@ -1,5 +1,6 @@
 import { Textarea } from "@nextui-org/react";
 import { useCode } from "@/features/Code/codeContext";
+import { formatCode } from "@/features/Interpreter/scripts/formatCode";
 
 export function Result() {
   const { code } = useCode();
@@ -7,7 +8,7 @@ export function Result() {
     <Textarea
       label="ソースコード"
       placeholder="Enter your description"
-      value={code}
+      value={formatCode(code)}
       disableAnimation
       disableAutosize
       classNames={{
