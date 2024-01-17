@@ -1,12 +1,15 @@
-import { Navbar, NavbarContent, NavbarMenuToggle } from "@nextui-org/navbar";
+import { Link } from "@nextui-org/link";
 import {
-  Link,
+  Navbar,
+  NavbarContent,
+  NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
-} from "@nextui-org/react";
+} from "@nextui-org/navbar";
 import { RunningManIcon } from "../Icon/RunningManIcon";
+import { Explanation } from "./Explanation";
 import { PhotoCameraButton } from "./PhotoCameraButton";
 
 export function NavigatioBar() {
@@ -27,6 +30,9 @@ export function NavigatioBar() {
         </NavbarItem>
         <NavbarItem>
           <PhotoCameraButton />
+        </NavbarItem>
+        <NavbarItem>
+          <Explanation />
         </NavbarItem>
       </NavbarContent>
 
