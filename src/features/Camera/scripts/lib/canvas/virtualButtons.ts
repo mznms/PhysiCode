@@ -80,7 +80,7 @@ function buttons_draw_grid() {
     let y = canvas.height * virtualButtons.height_rate_sum[i];
 
     let x1 = canvas.width * virtualButtons.width_rate_sum[1];
-    let x2 = canvas.width * virtualButtons.height_rate_sum[2];
+    let x2 = canvas.width * virtualButtons.width_rate_sum[2];
 
     context.beginPath();
     context.moveTo(0, y); //始点
