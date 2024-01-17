@@ -22,7 +22,7 @@ export const virtualButtons = {
   valid_keypoints: ["right_wrist", "left_wrist", "right_ankle", "left_ankle"],
   // 0: 通常状態のカラー      1:押されている状態のカラー
   colors: {
-    normal: "rgba(100, 100, 100, 0.8)",
+    normal: "rgba(100, 100, 100, 0.4)",
     pressed: "rgba(255, 100, 0, 0.3)",
   },
 
@@ -61,8 +61,17 @@ function buttons_draw_grid() {
   for (let i = 0; i < virtualButtons.grid_width; i++) {
     let x = canvas.width * virtualButtons.width_rate_sum[i];
 
+    let y1 = canvas.height * virtualButtons.height_rate_sum[1];
+    let y2 = canvas.height * virtualButtons.height_rate_sum[2];
+
     context.beginPath();
     context.moveTo(x, 0); //始点
+    context.lineTo(x, y1); //終点
+    context.closePath();
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(x, y2); //始点
     context.lineTo(x, canvas.height); //終点
     context.closePath();
     context.stroke();
@@ -70,8 +79,17 @@ function buttons_draw_grid() {
   for (let i = 0; i < virtualButtons.grid_height; i++) {
     let y = canvas.height * virtualButtons.height_rate_sum[i];
 
+    let x1 = canvas.width * virtualButtons.width_rate_sum[1];
+    let x2 = canvas.width * virtualButtons.width_rate_sum[2];
+
     context.beginPath();
     context.moveTo(0, y); //始点
+    context.lineTo(x1, y); //終点
+    context.closePath();
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(x2, y); //始点
     context.lineTo(canvas.width, y); //終点
     context.closePath();
     context.stroke();
