@@ -1,5 +1,5 @@
 "use client";
-import { Spinner } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/spinner";
 import { Camera } from "../Camera/Camera";
 import { usePoseDetection } from "../Camera/usePoseDetection";
 import { Result } from "./Result/Result";
