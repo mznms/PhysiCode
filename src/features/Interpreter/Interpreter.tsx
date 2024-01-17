@@ -5,7 +5,7 @@ import { Output } from "../Output/Output";
 
 export function Interpreter() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 mx-auto max-w-screen-md">
       <Code />
       <Input />
       <Output />
