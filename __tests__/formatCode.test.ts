@@ -29,10 +29,10 @@ describe("正常系テスト", () => {
   });
 
   test("thres = 0", () => {
-    expect(formatCode(">>>", 1)).toBe(">(3)");
+    expect(formatCode(">>>", 0)).toBe(">(3)");
   });
 
   test("thres = -1", () => {
-    expect(formatCode(">>>", 1)).toBe(">(3)");
+    expect(formatCode(">>>", -1)).toBe(">(3)");
   });
 });
