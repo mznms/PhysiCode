@@ -16,8 +16,9 @@ export function PhotoCameraButton() {
       color="primary"
       endContent={<PhotoCameraIcon size={24} />}
       isLoading={isLoading}
-      isIconOnly={true}
       radius="full"
-    />
+    >
+      {isOpen ? "終了" : "開始"}
+    </Button>
   );
 }
